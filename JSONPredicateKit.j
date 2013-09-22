@@ -30,3 +30,4 @@
 */
 
 @import "JSONPredicateKitClass.j"
+@import "CPPredicate+JSONPredicate.j"
