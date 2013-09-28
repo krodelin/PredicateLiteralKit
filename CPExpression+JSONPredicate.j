@@ -1,4 +1,4 @@
-@implementation CPPredicate (JSONPredicate)
+@implementation CPExpression (JSONPredicate)
 
 - (CPDictionary)toPredicateLiterals
 {
@@ -7,4 +7,3 @@
 }
 
 @end
-

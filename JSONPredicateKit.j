@@ -29,5 +29,24 @@
     source filenames are.
 */
 
+@import <Foundation/Foundation.j>
 @import "JSONPredicateKitClass.j"
+
 @import "CPPredicate+JSONPredicate.j"
+@import "CPPredicate_BOOL+JSONPredicate.j"
+@import "CPComparisonPredicate+JSONPredicate.j"
+@import "CPCompoundPredicate+JSONPredicate.j"
+
+@import "CPExpression+JSONPredicate.j"
+@import "CPKeyPathExpression+JSONPredicate.j"
+@import "CPConstantValueExpression+JSONPredicate.j"
+@import "CPAggregateExpression+JSONPredicate.j"
+@import "CPSelfExpression+JSONPredicate.j"
+@import "CPFunctionExpression+JSONPredicate.j"
+@import "CPVariableExpression+JSONPredicate.j"
+
+@import "CPObject+JSON.j"
+@import "CPNumber+JSON.j"
+@import "CPString+JSON.j"
+@import "CPArray+JSON.j"
+@import "CPDictionary+JSON.j"
