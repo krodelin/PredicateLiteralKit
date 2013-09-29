@@ -1,6 +1,7 @@
 #!/usr/bin/env objj
 
-@import "JSONPredicateKit.j"
+@import "PredicateLiteralKit.j"
+@import <JSLiteralKit/JSLiteralKit.j>
 
 
 var pred_string;
@@ -16,8 +17,8 @@ pred_string = @"date > 3 || date < 4 && age >= 4 OR age <= 5 AND type == \"type\
 
 var pred = [CPPredicate predicateWithFormat:pred_string];
 // print("[pred predicateFormat] = " + [pred predicateFormat]);
-// print("[[pred toPredicateLiterals] description] = " + [[pred toPredicateLiterals] description]);
+// print("[[pred predicateLiteral] description] = " + [[pred predicateLiteral] description]);
 
-var string = [[pred toPredicateLiterals] toJSObject];
+var string = [[pred predicateLiteral] toJSObject];
 // print("[CPString JSONFromObject:string] = " + [CPString JSONFromObject:string]);
 print([CPString JSONFromObject:string]);

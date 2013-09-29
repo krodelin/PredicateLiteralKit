@@ -29,24 +29,18 @@
     source filenames are.
 */
 
-@import <Foundation/Foundation.j>
-@import "JSONPredicateKitClass.j"
+@import "PredicateLiteralKitClass.j"
 
-@import "CPPredicate+JSONPredicate.j"
-@import "CPPredicate_BOOL+JSONPredicate.j"
-@import "CPComparisonPredicate+JSONPredicate.j"
-@import "CPCompoundPredicate+JSONPredicate.j"
+@import "CPPredicate+PredicateLiteralKit.j"
+@import "CPPredicate_BOOL+PredicateLiteralKit.j"
+@import "CPComparisonPredicate+PredicateLiteralKit.j"
+@import "CPCompoundPredicate+PredicateLiteralKit.j"
 
-@import "CPExpression+JSONPredicate.j"
-@import "CPKeyPathExpression+JSONPredicate.j"
-@import "CPConstantValueExpression+JSONPredicate.j"
-@import "CPAggregateExpression+JSONPredicate.j"
-@import "CPSelfExpression+JSONPredicate.j"
-@import "CPFunctionExpression+JSONPredicate.j"
-@import "CPVariableExpression+JSONPredicate.j"
+@import "CPExpression+PredicateLiteralKit.j"
+@import "CPKeyPathExpression+PredicateLiteralKit.j"
+@import "CPConstantValueExpression+PredicateLiteralKit.j"
+@import "CPAggregateExpression+PredicateLiteralKit.j"
+@import "CPSelfExpression+PredicateLiteralKit.j"
+@import "CPFunctionExpression+PredicateLiteralKit.j"
+@import "CPVariableExpression+PredicateLiteralKit.j"
 
-@import "CPObject+JSON.j"
-@import "CPNumber+JSON.j"
-@import "CPString+JSON.j"
-@import "CPArray+JSON.j"
-@import "CPDictionary+JSON.j"

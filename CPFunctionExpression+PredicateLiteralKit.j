@@ -1,6 +1,6 @@
-@implementation _CPFunctionExpression (JSONPredicate)
+@implementation _CPFunctionExpression (PredicateLiteralKit)
 
-- (CPDictionary)toPredicateLiterals
+- (CPDictionary)predicateLiteral
 {
 	// print("_operand = " + _operand);
     // print("_selector = " + _selector);
@@ -10,7 +10,7 @@
     // _CPRaiseInvalidAbstractInvocation(self, _cmd);
     var args = [[CPMutableArray alloc] init];
 
-    [[self arguments] enumerateObjectsUsingBlock:(function (object){ [args addObject:[object toPredicateLiterals]]; })];
+    [[self arguments] enumerateObjectsUsingBlock:(function (object){ [args addObject:[object predicateLiteral]]; })];
 
     return @{@"type":@"function", @"function":[self function], @"arguments":args};
 }

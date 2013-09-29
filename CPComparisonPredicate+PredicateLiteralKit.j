@@ -1,5 +1,5 @@
-@implementation CPComparisonPredicate (JSONPredicate)
-- (CPDictionary)toPredicateLiterals
+@implementation CPComparisonPredicate (PredicateLiteralKit)
+- (CPDictionary)predicateLiteral
 {
     var modifier;
 
@@ -70,8 +70,8 @@
         @"modifier":modifier,
         @"options":options,
     	@"operator":operator,
-    	@"lhs":[_left toPredicateLiterals],
-        @"rhs":[_right toPredicateLiterals]
+    	@"lhs":[_left predicateLiteral],
+        @"rhs":[_right predicateLiteral]
     };
 }
 

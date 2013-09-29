@@ -7,6 +7,6 @@
     <key>CPBundlePackageType</key>
     <string>FMWK</string>
     <key>CPPrincipalClass</key>
-    <string>JSONPredicateKit</string>
+    <string>PredicateLiteralKit</string>
 </dict>
 </plist>

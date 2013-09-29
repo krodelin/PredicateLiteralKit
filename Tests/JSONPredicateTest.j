@@ -10,7 +10,7 @@
 @{
     @"type": @"true"
 };
-    [self assert:expected equals:[tpred toPredicateLiterals]];
+    [self assert:expected equals:[tpred predicateLiteral]];
 }
 
 - (void)testTRUEPREDICATE
@@ -21,7 +21,7 @@
     @"type": @"false"
 };
 
-    [self assert:expected equals: [fpred toPredicateLiterals]];
+    [self assert:expected equals: [fpred predicateLiteral]];
 }
 
 - (void)testKeyPathAndStringEquality
@@ -43,7 +43,7 @@
     @"type": @"comparison"
 };
 
-	[self assert:expected equals:[pred toPredicateLiterals]]
+	[self assert:expected equals:[pred predicateLiteral]]
 }
 
 - (void)testKeyPathAndNumberGreaterThan
@@ -65,7 +65,7 @@
     @"type": @"comparison"
 };
 
-	[self assert:expected equals:[pred toPredicateLiterals]]
+	[self assert:expected equals:[pred predicateLiteral]]
 }
 
 - (void)testCompoundPredicate
@@ -107,7 +107,7 @@
     @"type": @"compound"
 };
 
-	[self assert:expected equals:[pred toPredicateLiterals]];
+	[self assert:expected equals:[pred predicateLiteral]];
 }
 
 - (void)testSelf
@@ -128,7 +128,7 @@
     @"type": @"comparison"
 };
 
-        [self assert:expected equals:[pred toPredicateLiterals]];
+        [self assert:expected equals:[pred predicateLiteral]];
 }
 
 - (void)testFunctions
@@ -159,7 +159,7 @@
     },
     @"type": @"comparison"
 };
-        [self assert:expected equals:[pred toPredicateLiterals]];
+        [self assert:expected equals:[pred predicateLiteral]];
 }
 
 @end

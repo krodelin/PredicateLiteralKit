@@ -1,6 +1,6 @@
 /*
- * JSONPredicateKitClass.j
- * JSONPredicateKit
+ * PredicateLiteralKitClass.j
+ * PredicateLiteralKit
  *
  * Created by Udo Schneider on September 22, 2013.
  *
@@ -29,12 +29,12 @@
     for example to get an image from the framework like this:
 
     @code
-    var path = [[CPBundle bundleForClass:JSONPredicateKit] pathForResource:@"email-action.png"];
+    var path = [[CPBundle bundleForClass:PredicateLiteralKit] pathForResource:@"email-action.png"];
     @endcode
 
-    You can also use [JSONPredicateKit version] to get the current version.
+    You can also use [PredicateLiteralKit version] to get the current version.
 */
-@implementation JSONPredicateKit : CPObject
+@implementation PredicateLiteralKit : CPObject
 
 + (CPString)version
 {
