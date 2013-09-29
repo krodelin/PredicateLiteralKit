@@ -1,5 +1,5 @@
 @import <Foundation/Foundation.j>
-@import "../JSONPredicateKit.j"
+@import "../PredicateLiteralKit.j"
 
 @implementation JSONPredicateTest : OJTestCase
 
@@ -156,6 +156,27 @@
     @"rhs": @{
         @"type": @"constant",
         @"value": @"Udo"
+    },
+    @"type": @"comparison"
+};
+        [self assert:expected equals:[pred predicateLiteral]];
+}
+
+- (void)testVariables
+{
+    var pred = [CPPredicate predicateWithFormat: @"date == $TODAY"],
+        expected =
+@{
+    @"lhs": @{
+        @"keypath": @"date",
+        @"type": @"keypath"
+    },
+    @"modifier": @"",
+    @"operator": @"==",
+    @"options": @[],
+    @"rhs": @{
+        @"type": @"variable",
+        @"variable": @"TODAY"
     },
     @"type": @"comparison"
 };
