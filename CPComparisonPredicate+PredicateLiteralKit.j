@@ -1,36 +1,6 @@
 @implementation CPComparisonPredicate (PredicateLiteralKit)
 - (CPDictionary)predicateLiteral
 {
-    var modifier;
-
-    switch (_modifier)
-    {
-        case CPDirectPredicateModifier: modifier = "";
-                                        break;
-        case CPAllPredicateModifier:    modifier = "ALL";
-                                        break;
-        case CPAnyPredicateModifier:    modifier = "ANY";
-                                        break;
-
-        default:                        modifier = "";
-                                        break;
-    }
-
-    var options;
-
-    switch (_options)
-    {
-        case CPCaseInsensitivePredicateOption:      options = @[@"c"];
-                                                    break;
-        case CPDiacriticInsensitivePredicateOption: options = @[@"d"];
-                                                    break;
-        case CPCaseInsensitivePredicateOption | CPDiacriticInsensitivePredicateOption:
-                                                    options = @[@"c", @"d"];
-                                                    break;
-
-        default:                                    options = @[];
-                                                    break;
-    }
 
     var operator;
 
@@ -64,15 +34,36 @@
                                                             break;
     }
 
-    // return [CPString stringWithFormat:@"%s%s %s%s %s",modifier,[_left description],operator,options,[_right description]];
-    return @{
-    	@"type":@"comparison",
-        @"modifier":modifier,
-        @"options":options,
-    	@"operator":operator,
-    	@"lhs":[_left predicateLiteral],
+    var result =  @{
+        @"type":@"comparison",
+        @"operator":operator,
+        @"lhs":[_left predicateLiteral],
         @"rhs":[_right predicateLiteral]
     };
+
+    switch (_modifier)
+    {
+        case CPDirectPredicateModifier: break;
+        case CPAllPredicateModifier:    [result setObject:@"ALL" forKey:@"modifier"];
+                                        break;
+        case CPAnyPredicateModifier:    [result setObject:@"ANY" forKey:@"modifier"];
+                                        break;
+        default:                        break;
+    }
+
+    switch (_options)
+    {
+        case CPCaseInsensitivePredicateOption:      [result setObject:@[@"c"] forKey:@"options"];
+                                                    break;
+        case CPDiacriticInsensitivePredicateOption: [result setObject:@[@"d"] forKey:@"options"];
+                                                    break;
+        case CPCaseInsensitivePredicateOption | CPDiacriticInsensitivePredicateOption:
+                                                    [result setObject:@[@"c", @"d"] forKey:@"options"];
+                                                    break;
+        default:                                    break;
+    }
+
+    return result;
 }
 
 @end

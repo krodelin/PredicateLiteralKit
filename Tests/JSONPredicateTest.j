@@ -33,9 +33,7 @@
         @"keypath": @"name",
         @"type": @"keypath"
     },
-    @"modifier": @"",
     @"operator": @"==",
-    @"options": @[],
     @"rhs": @{
         @"type": @"constant",
         @"value": @"Udo"
@@ -55,9 +53,7 @@
         @"keypath": @"grade",
         @"type": @"keypath"
     },
-    @"modifier": @"",
     @"operator": @">=",
-    @"options": @[],
     @"rhs": @{
         @"type": @"constant",
         @"value": 2
@@ -80,7 +76,6 @@
                 @"keypath": @"firstName",
                 @"type": @"keypath"
             },
-            @"modifier": @"",
             @"operator": @"LIKE",
             @"options": @[@"c", @"d"],
             @"rhs": @{
@@ -94,9 +89,7 @@
                 @"keypath": @"lastName",
                 @"type": @"keypath"
             },
-            @"modifier": @"",
             @"operator": @"LIKE",
-            @"options": @[],
             @"rhs": @{
                 @"type": @"constant",
                 @"value": @"Adderley"
@@ -119,9 +112,7 @@
         @"keypath": @"yourself",
         @"type": @"keypath"
     },
-    @"modifier": @"",
     @"operator": @"==",
-    @"options": @[],
     @"rhs": @{
         @"type": @"self"
     },
@@ -150,9 +141,7 @@
         @"function": @"fromObject:index:",
         @"type": @"function"
     },
-    @"modifier": @"",
     @"operator": @"==",
-    @"options": @[],
     @"rhs": @{
         @"type": @"constant",
         @"value": @"Udo"
@@ -171,9 +160,7 @@
         @"keypath": @"date",
         @"type": @"keypath"
     },
-    @"modifier": @"",
     @"operator": @"==",
-    @"options": @[],
     @"rhs": @{
         @"type": @"variable",
         @"variable": @"TODAY"
@@ -182,6 +169,28 @@
 };
         [self assert:expected equals:[pred predicateLiteral]];
 }
+
+- (void)testModifierAndOptions
+{
+    var pred = [CPPredicate predicateWithFormat: @"( ANY lastName BEGINSWITH[cd] $letter)"],
+        expected =
+@{
+    @"lhs": @{
+        @"keypath": @"lastName",
+        @"type": @"keypath"
+    },
+    @"modifier": @"ANY",
+    @"operator": @"BEGINSWITH",
+    @"options": @[@"c", @"d"],
+    @"rhs": @{
+        @"type": @"variable",
+        @"variable": @"letter"
+    },
+    @"type": @"comparison"
+};
+        [self assert:expected equals:[pred predicateLiteral]];
+}
+
 
 @end
 
