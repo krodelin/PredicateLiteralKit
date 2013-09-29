@@ -2,31 +2,30 @@
 
 - (CPDictionary)predicateLiteral
 {
-    var result = [[CPMutableArray alloc] init],
-        count = [_predicates count],
-        type;
+    var result = @[@"cmd"],
+        count = [_predicates count];
 
     if (count == 0)
         return @{@"type":@"TRUEPREDICATE"};
 
     switch (_type)
     {
-        case CPNotPredicateType:    type = @"NOT";
+        case CPNotPredicateType:    [result addObject: @"!"];
         							[result addObject:[[_predicates objectAtIndex:0] predicateLiteral]];
                                     break;
 
-        case CPAndPredicateType:    type = @"AND";
+        case CPAndPredicateType:    [result addObject: @"&"];
                                     for (var j = 0; j < count; j++)
                                         [result addObject:[[_predicates objectAtIndex:j] predicateLiteral]];
                                     break;
 
-        case CPOrPredicateType:     type = @"OR";
+        case CPOrPredicateType:     [result addObject: @"|"];
                                     for (var j = 0; j < count; j++)
                                         [result addObject:[[_predicates objectAtIndex:j] predicateLiteral]];
                                     break;
     }
 
-    return @{@"type":@"compound", @"operator":type, @"subpredicates":result};
+    return result;
 }
 
 @end

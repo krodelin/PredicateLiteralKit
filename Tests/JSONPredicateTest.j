@@ -17,9 +17,9 @@
 {
     var fpred = [CPPredicate predicateWithFormat:@"FALSEPREDICATE"],
     	expected =
-@{
-    @"type": @"false"
-};
+@[
+    false
+];
 
     [self assert:expected equals: [fpred predicateLiteral]];
 }
@@ -28,18 +28,18 @@
 {
 	var pred = [CPPredicate predicateWithFormat: @" name == \"Udo\""],
 		expected =
-@{
-    @"lhs": @{
-        @"keypath": @"name",
-        @"type": @"keypath"
-    },
-    @"operator": @"==",
-    @"rhs": @{
-        @"type": @"constant",
-        @"value": @"Udo"
-    },
-    @"type": @"comparison"
-};
+@[
+    @"cmp",
+    @"==",
+    @[
+        @"key",
+        @"name"
+    ],
+    @[
+        @"con",
+        @"Udo"
+    ]
+];
 
 	[self assert:expected equals:[pred predicateLiteral]]
 }
@@ -48,18 +48,18 @@
 {
 	var pred = [CPPredicate predicateWithFormat: @" grade >= 2"],
 		expected =
-@{
-    @"lhs": @{
-        @"keypath": @"grade",
-        @"type": @"keypath"
-    },
-    @"operator": @">=",
-    @"rhs": @{
-        @"type": @"constant",
-        @"value": 2
-    },
-    @"type": @"comparison"
-};
+@[
+    @"cmp",
+    @">=",
+    @[
+        @"key",
+        @"grade"
+    ],
+    @[
+        @"con",
+        2
+    ]
+];
 
 	[self assert:expected equals:[pred predicateLiteral]]
 }
@@ -68,37 +68,35 @@
 {
 	var pred = [CPPredicate predicateWithFormat: @"(firstName like[cd] \"Mark\") OR (lastName like \"Adderley\")"],
 		expected =
-@{
-    @"operator": @"OR",
-    @"subpredicates": @[
-        @{
-            @"lhs": @{
-                @"keypath": @"firstName",
-                @"type": @"keypath"
-            },
-            @"operator": @"LIKE",
-            @"options": @[@"c", @"d"],
-            @"rhs": @{
-                @"type": @"constant",
-                @"value": @"Mark"
-            },
-            @"type": @"comparison"
-        },
-        @{
-            @"lhs": @{
-                @"keypath": @"lastName",
-                @"type": @"keypath"
-            },
-            @"operator": @"LIKE",
-            @"rhs": @{
-                @"type": @"constant",
-                @"value": @"Adderley"
-            },
-            @"type": @"comparison"
-        }
+@[
+    @"cmd",
+    @"|",
+    @[
+        @"cmp",
+        @"LIKE",
+        @[
+            @"key",
+            @"firstName"
+        ],
+        @[
+            @"con",
+            @"Mark"
+        ],
+        @"cd"
     ],
-    @"type": @"compound"
-};
+    @[
+        @"cmp",
+        @"LIKE",
+        @[
+            @"key",
+            @"lastName"
+        ],
+        @[
+            @"con",
+            @"Adderley"
+        ]
+    ]
+];
 
 	[self assert:expected equals:[pred predicateLiteral]];
 }
@@ -107,17 +105,17 @@
 {
     var pred = [CPPredicate predicateWithFormat: @"yourself == SELF"],
         expected =
-@{
-    @"lhs": @{
-        @"keypath": @"yourself",
-        @"type": @"keypath"
-    },
-    @"operator": @"==",
-    @"rhs": @{
-        @"type": @"self"
-    },
-    @"type": @"comparison"
-};
+@[
+    @"cmp",
+    @"==",
+    @[
+        @"key",
+        @"yourself"
+    ],
+    @[
+        @"slf"
+    ]
+];
 
         [self assert:expected equals:[pred predicateLiteral]];
 }
@@ -126,28 +124,26 @@
 {
     var pred = [CPPredicate predicateWithFormat: @"name[6] = \"Udo\""],
         expected =
-@{
-    @"lhs": @{
-        @"arguments": @[
-            @{
-                @"keypath": @"name",
-                @"type": @"keypath"
-            },
-            @{
-                @"type": @"constant",
-                @"value": 6
-            }
+@[
+    @"cmp",
+    @"==",
+    @[
+        @"fn",
+        @"fromObject:index:",
+        @[
+            @"key",
+            @"name"
         ],
-        @"function": @"fromObject:index:",
-        @"type": @"function"
-    },
-    @"operator": @"==",
-    @"rhs": @{
-        @"type": @"constant",
-        @"value": @"Udo"
-    },
-    @"type": @"comparison"
-};
+        @[
+            @"con",
+            6
+        ]
+    ],
+    @[
+        @"con",
+        @"Udo"
+    ]
+];
         [self assert:expected equals:[pred predicateLiteral]];
 }
 
@@ -155,18 +151,18 @@
 {
     var pred = [CPPredicate predicateWithFormat: @"date == $TODAY"],
         expected =
-@{
-    @"lhs": @{
-        @"keypath": @"date",
-        @"type": @"keypath"
-    },
-    @"operator": @"==",
-    @"rhs": @{
-        @"type": @"variable",
-        @"variable": @"TODAY"
-    },
-    @"type": @"comparison"
-};
+@[
+    @"cmp",
+    @"==",
+    @[
+        @"key",
+        @"date"
+    ],
+    @[
+        @"var",
+        @"TODAY"
+    ]
+];
         [self assert:expected equals:[pred predicateLiteral]];
 }
 
@@ -174,20 +170,20 @@
 {
     var pred = [CPPredicate predicateWithFormat: @"( ANY lastName BEGINSWITH[cd] $letter)"],
         expected =
-@{
-    @"lhs": @{
-        @"keypath": @"lastName",
-        @"type": @"keypath"
-    },
-    @"modifier": @"ANY",
-    @"operator": @"BEGINSWITH",
-    @"options": @[@"c", @"d"],
-    @"rhs": @{
-        @"type": @"variable",
-        @"variable": @"letter"
-    },
-    @"type": @"comparison"
-};
+@[
+    @"cmp",
+    @"BEGINSWITH",
+    @[
+        @"key",
+        @"lastName"
+    ],
+    @[
+        @"var",
+        @"letter"
+    ],
+    @"cd",
+    @"ANY"
+];
         [self assert:expected equals:[pred predicateLiteral]];
 }
 

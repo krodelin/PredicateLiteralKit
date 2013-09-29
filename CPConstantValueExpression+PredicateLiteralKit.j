@@ -2,7 +2,7 @@
 
 - (CPDictionary)predicateLiteral
 {
-    return @{@"type":@"constant", @"value":[self constantValue]}
+	return @[@"con", [self constantValue]];
 }
 
 @end

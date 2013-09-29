@@ -2,7 +2,7 @@
 
 - (CPDictionary)predicateLiteral
 {
-    return @{@"type":@"keypath", @"keypath":[self keyPath]};
+	return @["key", [self keyPath]];
 }
 
 @end

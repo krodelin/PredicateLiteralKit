@@ -4,7 +4,7 @@
 
 - (CPDictionary)predicateLiteral
 {
-    return @{@"type":@"variable", @"variable":[[self variable] keyPath]};
+	return @[@"var", [[self variable] keyPath]];
 }
 
 @end
