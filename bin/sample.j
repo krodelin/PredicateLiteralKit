@@ -1,6 +1,6 @@
 #!/usr/bin/env objj
 
-@import "PredicateLiteralKit.j"
+@import "../PredicateLiteralKit.j"
 @import <JSLiteralKit/JSLiteralKit.j>
 
 
