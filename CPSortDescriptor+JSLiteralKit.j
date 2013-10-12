@@ -1,8 +1,8 @@
 @import <Foundation/CPArray.j>
 
-@implementation CPSortDescriptor (JSLiteralKit)
+@implementation CPSortDescriptor (PredicateLiteralKit)
 
-- (JSObject)toJSObject
+- (JSObject)sortDescriptorLiteral
 {
 	return @[ _key, _selector, _ascending];
 }
