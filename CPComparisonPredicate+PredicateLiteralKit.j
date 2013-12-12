@@ -34,33 +34,49 @@
                                                             break;
     }
 
-    var result =  @{
-        @"type":@"comparison",
-        @"operator":operator,
-        @"lhs":[_left predicateLiteral],
-        @"rhs":[_right predicateLiteral]
-    };
+    var modifier;
 
     switch (_modifier)
     {
-        case CPDirectPredicateModifier: break;
-        case CPAllPredicateModifier:    [result setObject:@"ALL" forKey:@"modifier"];
+        case CPDirectPredicateModifier: modifier = @"";
                                         break;
-        case CPAnyPredicateModifier:    [result setObject:@"ANY" forKey:@"modifier"];
+        case CPAllPredicateModifier:    modifier = @"ALL";
                                         break;
-        default:                        break;
+        case CPAnyPredicateModifier:    modifier = @"ANY";
+                                        break;
+        default:                        modifier = @"";
+                                        break;
     }
+
+    var options;
 
     switch (_options)
     {
-        case CPCaseInsensitivePredicateOption:      [result setObject:@[@"c"] forKey:@"options"];
+        case CPCaseInsensitivePredicateOption:      options = @"c";
                                                     break;
-        case CPDiacriticInsensitivePredicateOption: [result setObject:@[@"d"] forKey:@"options"];
+        case CPDiacriticInsensitivePredicateOption: options = @"d";
                                                     break;
         case CPCaseInsensitivePredicateOption | CPDiacriticInsensitivePredicateOption:
-                                                    [result setObject:@[@"c", @"d"] forKey:@"options"];
+                                                    options = @"cd";
                                                     break;
-        default:                                    break;
+        default:                                    options = @"";
+                                                    break;
+    }
+
+    var result =  @[
+        @"cmp",
+        operator,
+        [_left predicateLiteral],
+        [_right predicateLiteral],
+    ];
+
+    if ([options length] > 0 || [modifier length] > 0)
+    {
+        [result addObject:options];
+        if ([modifier length] > 0)
+        {
+            [result addObject:modifier];
+        }
     }
 
     return result;

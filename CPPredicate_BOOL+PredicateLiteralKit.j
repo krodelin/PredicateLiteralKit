@@ -2,7 +2,7 @@
 
 - (CPDictionary)predicateLiteral
 {
-    return (_value) ? @{@"type":@"true"} : @{@"type":@"false"};
+    return (_value) ? @[true] : @[false];
 }
 
 @end

@@ -2,7 +2,7 @@
 
 - (CPDictionary)predicateLiteral
 {
-    return @{@"type":@"self"}
+    return @[@"slf"];
 }
 
 @end

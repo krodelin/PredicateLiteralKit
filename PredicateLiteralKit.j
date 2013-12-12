@@ -44,3 +44,4 @@
 @import "CPFunctionExpression+PredicateLiteralKit.j"
 @import "CPVariableExpression+PredicateLiteralKit.j"
 
+@import "CPSortDescriptor+JSLiteralKit.j"

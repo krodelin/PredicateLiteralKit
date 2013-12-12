@@ -5,10 +5,11 @@
 - (CPDictionary)predicateLiteral
 {
     // _CPRaiseInvalidAbstractInvocation(self, _cmd);
-    var collection = [[CPMutableArray alloc] init];
+    var result = @[@"agr"];
 
-    [[self collection] enumerateObjectsUsingBlock:(function (object){ [collection addObject:[object predicateLiteral]]})];
-    return @{@"type":@"aggregate", @"collection":collection};
+    [[self collection] enumerateObjectsUsingBlock:(function (object){ [result addObject:[object predicateLiteral]]})];
+
+    return result;
 }
 
 @end
